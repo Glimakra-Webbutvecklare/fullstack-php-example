@@ -1,0 +1,33 @@
+services:
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./app/public:/var/www/html
+            - ./configurations/php.ini:/usr/local/etc/php/php.ini
+            - ./configurations/apache2.conf:/etc/apache2/apache2.conf
+        ports:
+            - 8050:80
+    mysql:
+        image: mariadb:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: db_root_password
+            MYSQL_USER: db_user
+            MYSQL_PASSWORD: db_password
+            MYSQL_DATABASE: db_template
+        volumes:
+            - mysqldata:/var/lib/mysql
+        ports:
+            - 38060:3306
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - 8051:80
+        environment:
+            - PMA_ARBITRARY=1
+        depends_on:
+            - mysql
+volumes:
+    mysqldata: {}

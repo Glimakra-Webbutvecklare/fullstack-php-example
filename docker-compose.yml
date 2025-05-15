@@ -8,7 +8,7 @@ services:
             - ./configurations/php.ini:/usr/local/etc/php/php.ini
             - ./configurations/apache2.conf:/etc/apache2/apache2.conf
         ports:
-            - 8050:80
+            - "80"
     mysql:
         image: mariadb:latest
         environment:

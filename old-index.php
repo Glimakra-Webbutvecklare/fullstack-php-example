@@ -37,14 +37,30 @@ $posts = $postModel->showAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min blogg app</title>
+    <title><?php echo $title ?></title>
 
     <link rel="stylesheet" href="styles/style.css">
 
 </head>
 <body>
 
-    <h1>Min blog app</h1>
+
+    <?php
+    include "includes/header.php";
+    ?>
+
+    <h1><?= $title ?></h1>
+
+    <?php foreach ($posts as $post) : ?>
+        <div>
+            <h2><?= $post['title'] ?> </h2>
+            <p><?= $post['body'] ?> </p>
+        </div>
+    <?php endforeach ?>
+    
+    <?php
+    include "includes/nav.php";
+    ?>
 
 
 

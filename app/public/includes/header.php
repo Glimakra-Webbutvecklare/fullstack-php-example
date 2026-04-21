@@ -1,3 +1,3 @@
 <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Webysther_20160423_-_Elephpant.svg/1200px-Webysther_20160423_-_Elephpant.svg.png" alt="logotype">
+    <img src="https://www.shutterstock.com/image-vector/unique-software-logo-abstract-s-260nw-2621164237.jpg" alt="logotype">
 </header>

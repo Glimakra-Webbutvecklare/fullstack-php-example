@@ -11,6 +11,8 @@ $db_user = getenv('MYSQL_USER');
 $db_password = getenv('MYSQL_PASSWORD');
 $db_database = getenv('MYSQL_DATABASE');
 
+print_r($db_user);
+
 if (!$db_root_password || !$db_user || !$db_password || !$db_database) {
     echo 'DB_CONNECTION_STRING environment variable not set.';
 }

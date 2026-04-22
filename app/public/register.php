@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->execute()) {
                 /// redirect till login
-                header('Location: login.php');
+                header('Location: login.php?registered=success');
                 exit;
             } else {
                 /// om något går fel, meddela användaren

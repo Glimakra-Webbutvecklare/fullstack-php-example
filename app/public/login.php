@@ -36,6 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
             $user = $stmt->fetch();
             if ($user && password_verify($password, $user['password_hash'])) {
+                // Spara informationen att du är inloggad
+                    session_regenerate_id(true);  // Säkerhetsåtgärd mot session fixation
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['username'] = $user['username'];
+
                 /// redirect till admin dashboard
                 header('Location: admin/index.php');
                 exit;

@@ -89,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+    <?php include "includes/nav.php" ?>
     <h1>Registrera nytt konto</h1>
     <?php if (!empty($errors)): ?>
     <div class="error-messages">

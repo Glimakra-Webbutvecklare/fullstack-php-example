@@ -79,6 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+    <?php include "includes/nav.php" ?>
+
     <?php if ($registration_success): ?>
         <p class="success-message">Registreringen lyckades! Du kan nu logga in.</p>
     <?php endif; ?>    

@@ -17,6 +17,8 @@ require_once "includes/database.php";
 </head>
 <body>
 
+    <?php include "includes/nav.php" ?>
+
     <h1>Min blog app</h1>
 
 

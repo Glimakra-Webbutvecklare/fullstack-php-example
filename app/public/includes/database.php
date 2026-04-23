@@ -20,7 +20,7 @@ function connect_db() : PDO {
     try {
         $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         return $pdo;
-    } catch (PDOExceptipn $e) {
+    } catch (PDOException $e) {
         error_log("Database Connection Error: " . $e->getMessage());
         throw new PDOException("Kunde inte ansluta till databasen. Försök igen senare.", (int)$e->getCode());
     }

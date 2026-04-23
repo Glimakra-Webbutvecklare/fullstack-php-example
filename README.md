@@ -44,3 +44,15 @@ I phpMyAdmin kan du nu se den databas som finns: `db_template`
 Informationen ovan (portar, variabler) baseras på filen `docker-compose.yml`
 
 ---
+
+## Miljövariabler
+
+Instruktion om hur man använder filen `.env`
+
+Gör en kopia på filern `.env-example` och namnge den till `.env`
+
+Här lägger du in det uppgifter som gäller för din miljö, ex känslig data som namn på databas, rättigheter till databas etc 
+
+Filen `.env` ska inte versionshanteras normalt. Det kan man lösa genom att skapa en fil med namnet `.gitignore`.
+
+I filen `.gitignore` kan man peka ut både filer och mappar för att de inte ska finnas på GitHub.

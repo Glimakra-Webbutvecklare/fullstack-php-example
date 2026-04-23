@@ -7,7 +7,7 @@ class Post
     {
     }
 
-    public function create(int $userId, string $title, string $body, ?string $imagePath): int
+    public function create(int $userId, string $title, string $body, ?string $imagePath = null): int
     {
         $stmt = $this->pdo->prepare(
             "INSERT INTO posts (user_id, title, body, image_path)

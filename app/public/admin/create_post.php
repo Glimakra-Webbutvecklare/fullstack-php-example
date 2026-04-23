@@ -29,12 +29,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $body = trim($_POST['body']) ?? '';
 
     // Validera så att title och body är ej tomma
-
+    if (empty($title)) {
+        $errors = ['Titel kan inte vara tom'];
+    }
+    if (empty($body)) {
+        $errors = ['Innehåll kan inte vara tom'];
+    }
     // om både title och body är OK så skapa en ny post med
+    if (empty($errors)) {
+        try {
+            // skapa en post
+            $post_model->create($logged_in_user_id, $title, $body);
+
+            // redirect till admin/index.php och lägg till ?created=success
+            header('Location: index.php?created=success');
+        } catch (PDOException $e) {
+            error_log("Create Post error", $e->getMessage());
+            $errors[] = 'Databasfel. Kan inte spara inlägg just nu.';
+        }
+
+    }
     
-    // $post_model
-    
-    // redirect till admin/index.php och lägg till ?created=success
 
     // fånga eventuella fel
 }
@@ -64,6 +79,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Skapa nytt blogginlägg</h1>
+    <?php if (!empty($errors)): ?>
+    <div class="error-messages">
+        <strong>Inlägget kunde inte sparas:</strong>
+        <ul>
+            <?php foreach ($errors as $error): ?>
+                <li><?php echo htmlspecialchars($error); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php endif; ?>
     <p><a href="index.php">&laquo; Tillbaka till Admin Dashboard</a></p>
 
     <form action="create_post.php" method="post">

@@ -10,6 +10,9 @@ define('DB_PASS', getenv('MYSQL_PASSWORD'));
 // teckenkodning
 define('DB_CHARSET', 'utf8mb4');
 
+// URL till sidan
+define('BASE_URL', 'http://localhost:8050');
+
 // Starta sessioner (viktigt för login!)
 // Görs en gång här så det gäller alla sidor som inkluderar config.php
 if (session_status() === PHP_SESSION_NONE) {

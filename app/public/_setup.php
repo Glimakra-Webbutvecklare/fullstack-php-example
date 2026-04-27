@@ -4,8 +4,6 @@ require_once 'includes/config.php';
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
 
-
-
 $pdo = connect_db();
 
 print_r($pdo);
@@ -48,14 +46,27 @@ if (!$stmt) {
     echo "Tabellen posts kunde inte skapas";
 }
 
-
 // instruktion för att visa tabeller i databasen
-
-$sql = "SHOW tables";
+$sql = "SHOW TABLES";
 $stmt = $pdo->query($sql);
 
 // visa resultat
-
 $result = $stmt->fetchAll();
 
-print_r($result);
+
+// istället för att skriva ut resultatet på sidan så är det bättre
+// att dirgera vidare till startsidan, kanske ge ett kvitto
+// på att nu kan applikationen användas
+// använder php header instruktion
+
+
+// kontrollera $result som är resultatet av att en eller flera
+// tabeller skapades. Om antalet tabeller är 1 eller fler
+// så kan man skicka ett kommando i stil med header('Location: /?setup=ok');
+
+if (count($result) > 0) {
+    header('Location: /?setup=true');
+} else {
+    print_r($result); 
+}
+

@@ -22,7 +22,7 @@ Gör följande steg:
 6. Innan applikationen kan användas ska nu de tabeller som applikationen använder installeras. Det gör du genom att navigera till http://localhost:8050/_setup.php
 
 
-I webbläsaren bör du nu se "Hello world"
+I webbläsaren bör du nu se "Min blog app". När installationen av tabeller är genomförd / kontrollerad visas info i sti med "Installationen av applikationen är gjord."
 
 
 ## MySQL via phpMyAdmin
@@ -59,6 +59,7 @@ Filen `.env` ska inte versionshanteras normalt. Det kan man lösa genom att skap
 
 I filen `.gitignore` kan man peka ut både filer och mappar för att de inte ska finnas på GitHub.
 
+---
 
 ## Installation av tabeller i databas
 

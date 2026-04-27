@@ -15,9 +15,11 @@ https://www.docker.com/
 Gör följande steg:
 
 1. Klona ner repot
-2. Öppna terminalen och ange kommandot: `docker-compose up`
-3. När applikationen startat (tar ngn minut första gången) öppna en webbläsare och navigera till 
-http://localhost:8050
+2. Se till att du är i rätt branch
+3. Se rubriken "Miljövariabler" nedan. Följ instruktioner.
+4. Öppna terminalen och ange kommandot: `docker-compose up`
+5. När applikationen startat (tar ngn minut första gången) öppna en webbläsare och navigera till http://localhost:8050
+6. Innan applikationen kan användas ska nu de tabeller som applikationen använder installeras. Det gör du genom att navigera till http://localhost:8050/_setup.php
 
 
 I webbläsaren bör du nu se "Hello world"
@@ -37,7 +39,7 @@ För att logga in anger du:
 - Användarnamn: `db_user`
 - Lösenord: `db_password`
 
-I phpMyAdmin kan du nu se den databas som finns: `db_template`
+I phpMyAdmin kan du nu se den databas som finns: `db_fullstack`
 
 ---
 
@@ -58,7 +60,7 @@ Filen `.env` ska inte versionshanteras normalt. Det kan man lösa genom att skap
 I filen `.gitignore` kan man peka ut både filer och mappar för att de inte ska finnas på GitHub.
 
 
-## Installation av databas
+## Installation av tabeller i databas
 
 För att applikationen ska kunna köras som det är tänkt så ska följande tabeller finnas.
 
@@ -90,13 +92,3 @@ CREATE TABLE posts (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE -- Koppling till users. Om användaren raderas, raderas även hens inlägg.
 );
 ```
-
-
-Tips
-
-Skapa en setup fil i applikationen som kan installera de tabeller som används. Med en setup fil behöver man då inte använda phpMyAdmin för att lägga till tabeller.
-
-Filen kan ex namnges `setup.php`, `_setup.php`. Ett inledande understreck kan signalera ngt specifikt i vissa appar...
-
-
-Navigera till http://localhost:8050/_setup.php

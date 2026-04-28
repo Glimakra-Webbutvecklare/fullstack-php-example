@@ -1,12 +1,41 @@
 <?php
 declare(strict_types=1);
 
-// TODO: koppla till databas
-// skicka in de nuvarande värdet på post
-$post = ['id' => 1, 'title' => 'test'];
-$post_id = 1;
-$title = 'Test';
-$body = 'test body';
+// Hämta config databasuppgifter
+require_once '../includes/config.php';
+
+// Säkerställa att användaren är inloggad
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../login.php?redirect='. urlencode($_SERVER['REQUEST_URI']))
+    exit;
+}
+
+$logged_in_user_id = $_SESSION['user_id'];
+
+require_once '../includes/database.php';
+require_once '../includes/Post.php';
+
+// array för att spara eventuella fel
+$errors = [];
+//         $_GET['id']; // fungerar också men du har ingen validering
+$post_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // vilken post ska uppdateras?
+$post = null;
+
+// Variabler som vi ska plocka ut från post efter att den har hämtats från DB
+$title = '';
+$body = '';
+$current_image_path = null;
+
+if ($post_id === false || $post_id <= 0) {
+    $errors[] = "Ogiltigt post-id";
+} else {
+    // Försök hämta post från DB
+    try {
+
+    } catch () {
+        
+    }
+}
 ?>
 
 <!DOCTYPE html>

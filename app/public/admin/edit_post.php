@@ -6,7 +6,7 @@ require_once '../includes/config.php';
 
 // Säkerställa att användaren är inloggad
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../login.php?redirect='. urlencode($_SERVER['REQUEST_URI']))
+    header('Location: ../login.php?redirect='. urlencode($_SERVER['REQUEST_URI']));
     exit;
 }
 
@@ -29,12 +29,67 @@ $current_image_path = null;
 if ($post_id === false || $post_id <= 0) {
     $errors[] = "Ogiltigt post-id";
 } else {
-    // Försök hämta post från DB
     try {
 
-    } catch () {
-        
+        // Försök hämta post från DB
+        // post model
+        $post_model = new Post(connect_db());
+        // hämta posten med rätt id
+        $post = $post_model->showOne($post_id);
+
+        if (!$post) {
+            $errors[] = "Posten hittade inte";
+        } elseif ($post['user_id'] != $logged_in_user_id) {
+            $errors[] = "Du har inte rätt att redigera posten.";
+            $post = null;
+        } else {
+            $title = $post['title'];
+            $body = $post['body'];
+            $current_image_path = $post['image_path'];
+        }
+    } catch (PDOExepction $e) {
+        error_log("Edit Post Fetch error", $e->getMessage());
+        $errors[] = 'Databasfel. Kan inte hämta post för redigering.';
+        $post = null;
     }
+}
+
+// Hantera en förfrågan från formuläret
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $new_title = trim($_POST['title'] ?? '');
+    $new_body = trim($_POST['body'] ?? '');
+    $new_image_path = $current_image_path; // TODO: fix
+
+    // validera att datan är rimlig
+    if (empty($new_title)) {
+        $errors[] = 'Titel är obligatoriskt.';
+    }
+    if (empty($new_body)) {
+        $errors[] = 'Innehåll är obligatoriskt.';
+    }
+
+    if (empty($errors)) {
+        try {
+            // Försök uppdatera posten
+            $post_model = new Post(connect_db());
+            $updated_successfully = $post_model->updateOne($post_id, 
+                                                            $logged_in_user_id, 
+                                                            $new_title, 
+                                                            $new_body, 
+                                                            $new_image_path);
+            
+            if ($updated_successfully) {
+                header("Location: index.php?updated=success&id=" . $post_id);
+                exit;
+            } else {
+                $errors[] = 'Ett fel uppstod när inlägget skulle uppdateras.';
+            }
+        } catch (PDOException $e) {
+            error_log("Update Post Error: " . $e->getMessage());
+            $errors[] = 'Databasfel. Kan inte uppdatera inlägg just nu.';
+        }
+    }
+
 }
 ?>
 
@@ -75,6 +130,11 @@ if ($post_id === false || $post_id <= 0) {
 
     <?php if ($post): ?>
         <form action="edit_post.php?id=<?php echo $post_id; ?>" method="post">
+            <?php if ($current_image_path): ?>
+                <div>
+                    <img src="<?= htmlspecialchars(BASE_URL . '/' . $current_image_path); ?>" alt="">
+                </div>
+            <?php endif; ?>
             <div class="form-group">
                 <label for="title">Titel:</label>
                 <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($title); ?>" required>

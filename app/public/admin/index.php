@@ -95,6 +95,7 @@ try {
                         <td>
                             <a href="../post.php?id=<?php echo $post['id']; ?>" target="_blank">Visa</a>
                             <a href="edit_post.php?id=<?php echo $post['id']; ?>">Redigera</a>
+                            <a href="delete_post.php?id=<?php echo $post['id']; ?>">Delete</a>
                             <!-- Radera-knapp kommer i steg 4 -->
                         </td>
                     </tr>

@@ -75,32 +75,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrera dig - Enkel Blogg</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; }
-        input[type="text"], input[type="email"], input[type="password"] {
-            width: 100%; padding: 8px; border: 1px solid #ccc; box-sizing: border-box;
-        }
-        button { padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
-        .error-messages { color: red; margin-bottom: 15px; }
-        .error-messages ul { list-style: none; padding: 0; }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <?php include "includes/nav.php" ?>
     <h1>Registrera nytt konto</h1>
     <?php if (!empty($errors)): ?>
-    <div class="error-messages">
-        <strong>Registreringen misslyckades:</strong>
-        <ul>
-            <?php foreach ($errors as $error): ?>
-                <li><?php echo htmlspecialchars($error); ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
+        <?php $error_title = "Registreringen misslyckades:"; ?>
+        <?php include 'includes/view-errors.php' ?>
     <?php endif; ?>
+
+
     <form action="register.php" method="post">
         <div class="form-group">
             <label for="username">Användarnamn:</label>

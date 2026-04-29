@@ -67,24 +67,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Fel vid radering - Admin</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
-        .error-messages { color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px; }
-        .error-messages ul { list-style: none; padding: 0; }
-        a { color: #007bff; text-decoration: none; }
-    </style>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-    <h1>Fel vid radering</h1>
     <?php if (!empty($errors)): ?>
-        <div class="error-messages">
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li><?php echo htmlspecialchars($error); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+        <?php $error_title = "Fel vid radering"; ?>
+        <?php include 'includes/view-errors.php' ?>
     <?php endif; ?>
+
     <p><a href="index.php">&laquo; Tillbaka till Admin Dashboard</a></p>
 </body>
 </html>
+

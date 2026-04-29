@@ -30,16 +30,7 @@ if ($post_id === false || $post_id <= 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $post ? htmlspecialchars($post['title']) : 'Inlägg'; ?> - Enkel Blogg</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
-        .post-content { margin-top: 20px; }
-        .post-meta { font-size: 0.9em; color: #666; margin-bottom: 10px; }
-        .post-image-full { max-width: 100%; height: auto; margin-bottom: 20px; }
-        nav { margin-bottom: 20px; background-color: #f8f9fa; padding: 10px; border-radius: 5px; }
-        nav a { margin-right: 15px; text-decoration: none; color: #007bff; }
-        nav a:hover { text-decoration: underline; }
-        .error-message { color: red; border: 1px solid red; padding: 10px; margin-bottom: 20px; }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 
 </head>
 <body>

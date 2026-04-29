@@ -44,18 +44,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Admin - Enkel Blogg</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        nav { margin-bottom: 20px; background-color: #f8f9fa; padding: 10px; border-radius: 5px; }
-        nav a { margin-right: 15px; text-decoration: none; color: #007bff; }
-        .create-link { display: inline-block; margin-bottom: 20px; background-color: #28a745; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; }
-        .create-link:hover { background-color: #218838; }
-        .error-message { color: red; border: 1px solid red; padding: 10px; margin-bottom: 20px; }
-        .success-message { color: green; border: 1px solid green; padding: 10px; margin-bottom: 20px; }
-    </style>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
 

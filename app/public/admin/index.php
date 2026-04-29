@@ -95,8 +95,12 @@ try {
                         <td>
                             <a href="../post.php?id=<?php echo $post['id']; ?>" target="_blank">Visa</a>
                             <a href="edit_post.php?id=<?php echo $post['id']; ?>">Redigera</a>
-                            <a href="delete_post.php?id=<?php echo $post['id']; ?>">Delete</a>
-                            <!-- Radera-knapp kommer i steg 4 -->
+                            <!-- <a href="delete_post.php?id=<?php echo $post['id']; ?>">Delete</a> -->
+                            <form action="delete_post.php" method="post" style="display: inline;"
+                            onsubmit="return confirm('Är du säker på att du vill radera detta inlägg?');">
+                                <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                                <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 3px 8px; cursor: pointer;">Radera</button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>

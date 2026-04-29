@@ -29,7 +29,7 @@ $body = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title']) ?? '';
     $body = trim($_POST['body']) ?? '';
-    $image = $_FILES['image'] ?? null;
+    $image = $_FILES['uploaded-image'] ?? null;
     $image_path = null;
 
     // Validera så att title och body är ej tomma
@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     if ($image && $image['error'] !== UPLOAD_ERR_OK) {
+        print_r($image);
         $errors[] = 'Ett fel uppstod vid bilduppladdning';
     }
 
@@ -145,8 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea id="body" name="body" required></textarea>
         </div>
         <div class="form-group">
-            <label for="image">Bild (valfritt, max 7 MB, JPG/PNG/GIF):</label>
-            <input type="file" id="image" name="image" accept="image/jpeg, image/png, image/gif">
+            <label for="uploaded-image">Bild (valfritt, max 7 MB, JPG/PNG/GIF):</label>
+            <input type="file" id="image" name="uploaded-image" accept="image/jpeg, image/png, image/gif">
         </div>
         <button type="submit">Spara inlägg</button>
     </form>
